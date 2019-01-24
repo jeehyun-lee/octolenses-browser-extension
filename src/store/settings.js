@@ -20,6 +20,15 @@ class SettingsStore {
 
   @persist
   @observable
+  githubs = [
+    {
+      url: 'https://api.github.com/',
+      token: undefined,
+    },
+  ];
+
+  @persist
+  @observable
   wasOnboarded = false;
 
   @persist

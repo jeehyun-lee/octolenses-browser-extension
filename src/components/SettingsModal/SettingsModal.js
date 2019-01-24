@@ -28,6 +28,7 @@ export class SettingsModal extends React.Component {
     this.state = {
       useNewTabPage,
       token: props.settings.token,
+      githubs: props.settings.githubs,
       darkMode: props.settings.darkMode,
     };
   }
@@ -178,19 +179,24 @@ export class SettingsModal extends React.Component {
   }
 
   renderTokenSettings() {
-    const { token } = this.state;
+    const { githubs } = this.state;
 
     return (
       <div className="SettingsModal__FormGroup SettingsModal__FormGroup--token">
         <span className="SettingsModal__FormGroup-Header">
           Github Personal Access Token:
         </span>
-        <input
-          id="token"
-          type="password"
-          value={token}
-          onChange={this.handleTokenChange}
-        />
+        {githubs.map((github, i) => (
+          <React.Fragment key={i}>
+            <label htmlFor="token">{github.url}</label>
+            <input
+              id="token"
+              type="password"
+              value={github.token}
+              onChange={this.handleTokenChange}
+            />
+          </React.Fragment>
+        ))}
         <div className="SettingsModal__Form-HelpText">
           <p>
             You can generate a Personal Access Token on{' '}
